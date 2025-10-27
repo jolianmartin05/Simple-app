@@ -2,7 +2,8 @@ pipeline {
   agent any
 
   environment {
-    IMAGE_NAME = 'jolianliemantika21'/Simple-app'
+    IMAGE_NAME = 'jolianliemantika21/simple-app'
+    REGISTRY = 'https://index.docker.io/v1/'
     REGISTRY_CREDENTIALS = 'dockerhub-credentials'
   }
 
@@ -55,4 +56,5 @@ pipeline {
       echo 'Selesai build pipeline.'
     }
   }
+
 }
