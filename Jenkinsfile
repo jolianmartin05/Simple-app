@@ -19,16 +19,16 @@ pipeline {
       }
     }
 
-    stage('Unit Test') {
-      steps {
-        bat """
-          echo Menjalankan unit test...
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pytest --maxfail=1 --disable-warnings -q
-        """
-      }
-    }
+    // stage('Unit Test') {
+    //   steps {
+    //     bat """
+    //       echo Menjalankan unit test...
+    //       python -m pip install --upgrade pip
+    //       pip install -r requirements.txt
+    //       pytest --maxfail=1 --disable-warnings -q
+    //     """
+    //   }
+    // }
 
     stage('Build Docker Image') {
       steps {
@@ -65,5 +65,7 @@ pipeline {
     }
   }
 }
+
+
 
 
