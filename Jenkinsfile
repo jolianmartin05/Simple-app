@@ -3,15 +3,12 @@ pipeline {
 
   environment {
     IMAGE_NAME = 'jolianliemantika21/simple-app'
-    REGISTRY = 'https://index.docker.io/v1/'
     REGISTRY_CREDENTIALS = 'dockerhub-credentials'
   }
 
   stages {
-
     stage('Checkout') {
       steps {
-        echo 'Checkout source code...'
         checkout scm
       }
     }
@@ -19,6 +16,17 @@ pipeline {
     stage('Build') {
       steps {
         bat 'echo "Mulai build aplikasi (Windows)"'
+      }
+    }
+
+    stage('Unit Test') {
+      steps {
+        bat """
+          echo Menjalankan unit test...
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pytest --maxfail=1 --disable-warnings -q
+        """
       }
     }
 
@@ -56,5 +64,6 @@ pipeline {
       echo 'Selesai build pipeline.'
     }
   }
-
 }
+
+
